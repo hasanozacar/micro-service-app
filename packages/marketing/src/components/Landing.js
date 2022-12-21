@@ -10,6 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import MaterialLink from '@material-ui/core/Link';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
+import { faker } from '@faker-js/faker';
 
 function Copyright() {
   return (
@@ -61,11 +63,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cards = [{
+  id: 1, name: faker.commerce.productName(), content: faker.commerce.product()
+}, {
+  id: 2, name: faker.commerce.productName(), content: faker.commerce.product()
+}, {
+  id: 3, name: faker.commerce.productName(), content: faker.commerce.product()
+}, {
+  id: 4, name: faker.commerce.productName(), content: faker.commerce.product()
+}, {
+  id: 5, name: faker.commerce.productName(), content: faker.commerce.product()
+}, {
+  id: 6, name: faker.commerce.productName(), content: faker.commerce.product()
+}, {
+  id: 7, name: faker.commerce.productName(), content: faker.commerce.product()
+}, {
+  id: 8, name: faker.commerce.productName(), content: faker.commerce.product()
+}
+];
 
 export default function Album() {
   const classes = useStyles();
-
   return (
     <React.Fragment>
       <main>
@@ -80,16 +98,6 @@ export default function Album() {
               gutterBottom
             >
               Home Page
-            </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
@@ -115,7 +123,7 @@ export default function Album() {
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+              <Grid item key={card.id} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -124,11 +132,10 @@ export default function Album() {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                    {card.content}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
+                    {card.name}
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -150,15 +157,7 @@ export default function Album() {
         <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
+        <Footer />
       </footer>
       {/* End footer */}
     </React.Fragment>
